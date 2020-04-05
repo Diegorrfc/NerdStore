@@ -52,6 +52,11 @@ namespace NerdStore.Catalogo.Domain
             return QuantidadeEstoque >= quantidade;
         }
 
+        public void Validar()
+        {
+
+        }
+
     }
    
     public class Categoria : Entity
