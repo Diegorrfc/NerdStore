@@ -56,6 +56,22 @@ namespace NerdStore.Catalogo.Domain
    
     public class Categoria : Entity
     {
+        public Categoria(string nome, string codigo)
+        {
+            Nome = nome;
+            Codigo = codigo;
+        }
+
+        public string Nome
+        {
+            get;
+            private set;
+        }
+        public string Codigo
+        {
+            get;
+            private set;
+        }
 
     }
 }
