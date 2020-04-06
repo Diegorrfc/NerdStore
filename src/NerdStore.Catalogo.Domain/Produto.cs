@@ -5,7 +5,7 @@ namespace NerdStore.Catalogo.Domain
 {
     public class Produto : Entity, IAggregateRoot
     {
-        public Produto(string nome, string descricao, bool ativo, decimal valor, DateTime dataCadastro, string imagem, Guid categoriaID)
+        public Produto(string nome, string descricao, bool ativo, decimal valor, DateTime dataCadastro, string imagem, Guid categoriaID, Dimensoes dimensoes)
         {
             Nome = nome;
             Descricao = descricao;
@@ -14,6 +14,7 @@ namespace NerdStore.Catalogo.Domain
             DataCadastro = dataCadastro;
             Imagem = imagem;
             CategoriaID = categoriaID;
+            Dimensoes = dimensoes;
             Validar();
         }
 
@@ -24,7 +25,8 @@ namespace NerdStore.Catalogo.Domain
         public DateTime DataCadastro { get; private set; }
         public string Imagem { get; private set; }
         public int QuantidadeEstoque { get; private set; }
-        public Guid CategoriaID { get; set; }
+        public Guid CategoriaID { get; private set; }
+        public Dimensoes Dimensoes { get; private set; }
         public Categoria Categoria { get; private set; }
 
         public void Ativar() => Ativo = true;
