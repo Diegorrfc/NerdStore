@@ -32,20 +32,24 @@ namespace NerdStore.Catalogo.Domain
 
         public void AlterarCategoria(Categoria categoria)
         {
+            Validacoes.ValidarSeNulo(categoria, "A categoria não pode ser nula");
             Categoria = categoria;
             CategoriaID = categoria.Id;
         }
         public void AlterarDescricao(string descricao)
         {
+            Validacoes.ValidarSeVazio(descricao, "Desciricao não pode ser vazia");
             Descricao = descricao;
         }
         public void DebitarEstoque(int quantidade)
         {
             if (quantidade < 0) quantidade *= -1;
+            if (PossuiEstoque(quantidade)) throw new DomainException(); 
             QuantidadeEstoque -= quantidade;
         }
         public void ReporEstoque(int quantidade)
         {
+            if(quantidade < 0) quantidade *= -1;
             QuantidadeEstoque += quantidade;
         }
         public bool PossuiEstoque(int quantidade)
