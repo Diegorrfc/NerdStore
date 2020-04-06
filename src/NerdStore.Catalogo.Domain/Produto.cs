@@ -14,6 +14,7 @@ namespace NerdStore.Catalogo.Domain
             DataCadastro = dataCadastro;
             Imagem = imagem;
             CategoriaID = categoriaID;
+            Validar();
         }
 
         public string Nome { get; private set; }
@@ -54,29 +55,13 @@ namespace NerdStore.Catalogo.Domain
 
         public void Validar()
         {
-
+            Validacoes.ValidarSeVazio(Nome, $"o camo {nameof(Nome)} está vazio");
+            Validacoes.ValidarSeVazio(Descricao, $"o camo {nameof(Descricao)} está vazio");
+            Validacoes.ValidarSeDiferente(CategoriaID, Guid.Empty, $"O campo  {nameof(CategoriaID)} não pode ser vazio");
+            Validacoes.ValidarSeVazio(Imagem, $"o camo {nameof(Imagem)} está vazio");
+            Validacoes.ValidarSeMenorIgualMinimo(Valor, 0, $"O campo  {nameof(Valor)} não pode ser menor ou igual a 0");
         }
 
     }
    
-    public class Categoria : Entity
-    {
-        public Categoria(string nome, string codigo)
-        {
-            Nome = nome;
-            Codigo = codigo;
-        }
-
-        public string Nome
-        {
-            get;
-            private set;
-        }
-        public string Codigo
-        {
-            get;
-            private set;
-        }
-
-    }
 }

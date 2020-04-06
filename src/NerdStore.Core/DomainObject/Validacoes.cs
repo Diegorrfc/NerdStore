@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace NerdStore.Core.DomainObject
 {
-    public class AssertionConcern
+    public class Validacoes
     {
         public static void ValidarSeigual(object object1, object object2, string msg)
         {
@@ -23,6 +23,11 @@ namespace NerdStore.Core.DomainObject
         public static void ValidarCaracteres(string valor, int min, int max, string msg)
         {
             if (valor.Trim().Length > max || valor.Trim().Length < min)
+                throw new DomainException(msg);
+        }
+        public static void ValidarSeVazio(string valor, string msg)
+        {
+            if (string.IsNullOrEmpty(valor))
                 throw new DomainException(msg);
         }
         public static void ValidarExpressao(string pattern, string valor, string msg)
@@ -70,6 +75,15 @@ namespace NerdStore.Core.DomainObject
         {
             if (valor <= minimo)
                 throw new DomainException(msg);
+        }
+        public static void ValidarSeFalso(bool valor, string msg)
+        {
+            if (valor)
+                throw new DomainException(msg);
+        }
+        public static void ValidarSeVerdadeiro(bool valor, string msg)
+        {
+            ValidarSeFalso(!valor, msg);
         }
     }
 }
