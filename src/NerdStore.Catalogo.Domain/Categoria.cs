@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NerdStore.Core.DomainObject;
 
 namespace NerdStore.Catalogo.Domain
@@ -11,7 +12,8 @@ namespace NerdStore.Catalogo.Domain
             Codigo = codigo;
             Validar();
         }
-
+        protected Categoria() { }
+       
         public string Nome
         {
             get;
@@ -22,6 +24,7 @@ namespace NerdStore.Catalogo.Domain
             get;
             private set;
         }
+        public ICollection<Produto> Produtos { get; set; }
         void Validar()
         {
             Validacoes.ValidarSeVazio(Nome, $"A propriedade {Nome} não pode ser vazia");
