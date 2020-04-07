@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NerdStore.Catalogo.Domain;
 using NerdStore.Core.Data;
-using Microsoft.EntityFrameworkCore.Design;
-using System.Threading.Tasks;
-using NerdStore.Catalogo.Data.Repository;
 
 namespace NerdStore.Catalogo.Data
 {

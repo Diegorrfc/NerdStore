@@ -7,7 +7,6 @@ namespace NerdStore.Catalogo.Data.Mapping
 {
     public class ProdutoMapping : IEntityTypeConfiguration<Produto>
     {
-
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
             builder.HasKey(p => p.Id);
