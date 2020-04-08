@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using NerdStore.Catalogo.Domain;
 using NerdStore.Core.Data;
 
@@ -19,37 +21,45 @@ namespace NerdStore.Catalogo.Data.Repository
 
         public void Adicionar(Produto produto)
         {
-            throw new NotImplementedException();
+            _context.Produtos.Add(produto);
         }
 
         public void Adicionar(Categoria categoria)
         {
-            throw new NotImplementedException();
+            _context.Categoria.Add(categoria);
         }
 
         public void Atualizar(Produto produto)
         {
-            throw new NotImplementedException();
-        }       
-
-        public Task<IEnumerable<Categoria>> ObterCategorias()
+            _context.Produtos.Update(produto);
+        }
+        public void Atualizar(Categoria categoria)
         {
-            throw new NotImplementedException();
+            _context.Categoria.Update(categoria);
         }
 
-        public Task<IEnumerable<Produto>> ObterPorCategoria(int codigo)
+        public async Task<IEnumerable<Categoria>> ObterCategorias()
         {
-            throw new NotImplementedException();
+            return await _context.Categoria.AsNoTracking().ToListAsync();
         }
 
-        public Task<Produto> ObterPorId(Guid id)
+        public async Task<IEnumerable<Produto>> ObterPorCategoria(int codigo)
         {
-            throw new NotImplementedException();
+            return await _context.Produtos.AsNoTracking()
+                .Include(p => p.Categoria)
+                .Where(c => c.Categoria.Codigo == codigo)
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<Produto>> ObterTodos()
+        public async Task<Produto> ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return await _context.Produtos.AsNoTracking()
+             .FirstOrDefaultAsync(n => n.Id == id);            
+        }
+
+        public async Task<IEnumerable<Produto>> ObterTodos()
+        {
+            return await _context.Produtos.AsNoTracking().ToListAsync();
         }
 
         public void Dispose()

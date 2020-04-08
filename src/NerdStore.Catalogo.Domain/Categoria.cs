@@ -25,6 +25,9 @@ namespace NerdStore.Catalogo.Domain
             private set;
         }
         public ICollection<Produto> Produtos { get; set; }
+
+        public DateTime DataCadastro { get; private set; }
+
         void Validar()
         {
             Validacoes.ValidarSeVazio(Nome, $"A propriedade {Nome} não pode ser vazia");
