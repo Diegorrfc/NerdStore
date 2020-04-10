@@ -7,5 +7,10 @@
   <ItemGroup>
     <Folder Include="DomainObject\" />
     <Folder Include="Data\" />
+    <Folder Include="Bus\" />
+    <Folder Include="Message\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="8.0.1" />
   </ItemGroup>
 </Project>
